@@ -1,27 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Artists</h1>
+<h1>My Artists</h1>
+<p><%= link_to new_artist_path do %>
+  <span class="glyphicon glyphicon-plus"></span> Add
+  <% end %>
+</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="row">
+  <% @artists.each do |artist| %>
+   <div class="col-md-6">
+      <div class="well">
+      <% if artist.avatar.exists? != nil %>
+        <%= image_tag artist.avatar.url(:thumb) %>
+      <% end %>
+      <h2><%= link_to artist.name, artist %></h2>
 
-  <tbody>
-    <% @artists.each do |artist| %>
-      <tr>
-        <td><%= artist.name %></td>
-        <td><%= link_to 'Show', artist %></td>
-        <td><%= link_to 'Edit', edit_artist_path(artist) %></td>
-        <td><%= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <h4><%= link_to edit_artist_path(artist) do %>
+            <span class="glyphicon glyphicon-pencil"></span>
+          <% end %>
 
-<br>
-
-<%= link_to 'New Artist', new_artist_path %>
+          <%= link_to artist, method: :delete, data: { confirm: 'Are you sure?' } do %>
+             <span class="glyphicon glyphicon-trash"></span>
+          <% end %>
+          </h4>
+      </div>
+    </div>
+  <% end %>
+</div>

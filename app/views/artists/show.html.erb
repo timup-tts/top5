@@ -1,9 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @artist.name %>
-</p>
+<div class="row">
+  <div class="col-md-12">
+    <div class="well">
+      <% if @artist.avatar.exists? != nil %>
+        <%= image_tag @artist.avatar.url(:thumb) %>
+      <% end %>
+      <h1><%= @artist.name %></h1>
+
+      <% @artist.songs.each do |song| %>
+        <h3><%= link_to song.name, song %></h3>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_artist_path(@artist) %> |
 <%= link_to 'Back', artists_path %>

@@ -7,7 +7,7 @@
 </p>
 
 <div class="row">
-  <%= @songs.each do |song| %>
+  <% @songs.each do |song| %>
     <div class="col-md-6">
       <div class="well">
         <h2><%= link_to song.name, song %></h2>
